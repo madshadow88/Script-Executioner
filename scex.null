@@ -1,0 +1,77 @@
+#!/bin/bash
+<<property
+Autor:stephen Dove
+Compania:Afore XXI
+Contact:tecmoi.sdove@xxi-banorte
+App:Script Runner 
+Version:1.0
+Revision:21032018
+property
+#vars
+re=""
+scn=""
+run=""
+logs="logs/"
+#$path=$pathn
+pathn=$(pwd)
+prosr=$(ps -a | grep "scex")
+#procs=$(ps -fea | grep "$scn")
+#vars
+function quiter {
+if [ "$scn" = Q ]
+then
+echo -e "\tExiting"
+/bin/sleep 2
+clear
+exit
+fi
+if [ "$run" = Q ]
+then
+echo -e "\tExiting"
+/bin/sleep 2
+clear
+exit
+fi
+}
+while [ "$scn" != Q ]
+do
+
+#if []
+echo -e "$prosr"
+#echo -e "$procs"
+echo -e "\n \t \tScript Runner\n"
+echo -e "\tScript Listing\n"
+ls -lA $path
+echo -e "\n"
+echo -e "\tQuit Q"
+read -p "	Script Name: " scn
+quiter
+#read -p "Run or Edit: " rd
+#if [ "$rd" = r ]
+#then
+echo -e "\tMoving Script $pathn/$scn to /bin/" 
+#echo -e "\nSCRIPT PATH $pathn"
+sudo cp $scn /bin/.
+ls -lA /bin/ | grep "$scn"
+echo -e "\n"
+read -p "	Wish to Run $scn Y/N/Q: " run
+quiter
+clear
+if [ "$run" = Y ]
+then
+$scn
+echo -e "\t $procs"
+else
+echo -e "\n\t\tScript $scn Not Executed\n"
+/bin/sleep 2
+clear
+fi
+#ls $path$logs
+#fi
+#if [ "$rd" = e ]
+#vi $path$scn
+#fi
+done
+#echo -e "\tExiting"
+#/bin/sleep 2
+#clear
